@@ -1,31 +1,25 @@
+---
+author: "Kyle Jones"
+date_published: "February 12, 2025"
+date_exported_from_medium: "November 10, 2025"
+canonical_link: "https://medium.com/@kyle-t-jones/sweet-spot-analysis-in-north-dakota-oil-and-gas-production-5358580431e9"
+---
+
 # Sweet Spot Analysis in North Dakota Oil and Gas Production Sweet spot analysis is an approach in oil and gas exploration that
 identifies areas with sustained high production potential. By...
 
 ### Sweet Spot Analysis in North Dakota Oil and Gas Production
-Sweet spot analysis is an approach in oil and gas exploration that
-identifies areas with sustained high production potential. By
-understanding where wells perform best over time, operators can optimize
-future drilling locations, improve recovery rates, and enhance economic
-returns. Production varies significantly based on geology, completion
-techniques, and operational decisions across basins.
+Sweet spot analysis is an approach in oil and gas exploration that identifies areas with sustained high production potential. By understanding where wells perform best over time, operators can optimize future drilling locations, improve recovery rates, and enhance economic returns. Production varies significantly based on geology, completion techniques, and operational decisions across basins.
 
-I wanted to find the most productive areas of North Dakota using
-cumulative production data since 2016.
+I wanted to find the most productive areas of North Dakota using cumulative production data since 2016.
 
 
 <figcaption>Source: Author</figcaption>
 
 
-I compiled well-level production data from the North Dakota Monthly
-Production Report. This dataset includes oil output, well locations, and
-monthly production figures since 2016. I used cumulative prod as the
-measure of well performance. That isn't perfect but it is useful for
-highlighting areas that sustain output over time.
+I compiled well-level production data from the North Dakota Monthly Production Report. This dataset includes oil output, well locations, and monthly production figures since 2016. I used cumulative prod as the measure of well performance. That isn't perfect but it is useful for highlighting areas that sustain output over time.
 
-I overlayed a heatmap of cumulative oil production over time on a
-regular map to see which regions consistently produced at high levels.
-Each well is represented as a point, with color intensity reflecting its
-cumulative output from Jan 2016 to Nov 2024.
+I overlayed a heatmap of cumulative oil production over time on a regular map to see which regions consistently produced at high levels. Each well is represented as a point, with color intensity reflecting its cumulative output from Jan 2016 to Nov 2024.
 
 ```python
 import pandas as pd
@@ -119,13 +113,4 @@ img_list[0].save(
 print(f"Animation saved as {gif_path}")
 ```
 
-This animation provides a dynamic, time-sensitive view of production
-performance. Traditional static maps only offer a snapshot, whereas our
-approach shows how different areas of North Dakota mature.
-::::::::By [Kyle Jones](https://medium.com/@kyle-t-jones) on
-[February 12, 2025](https://medium.com/p/5358580431e9).
-
-[Canonical
-link](https://medium.com/@kyle-t-jones/sweet-spot-analysis-in-north-dakota-oil-and-gas-production-5358580431e9)
-
-Exported from [Medium](https://medium.com) on November 10, 2025.
+This animation provides a dynamic, time-sensitive view of production performance. Traditional static maps only offer a snapshot, whereas our approach shows how different areas of North Dakota mature.
