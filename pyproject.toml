@@ -1,0 +1,13 @@
+[project]
+name = "sweet-spot-analysis-in-north-dakota-oil-and-gas-pr"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "linearmodels>=7.0",
+    "matplotlib>=3.10.9",
+    "numpy>=2.4.4",
+    "pandas>=3.0.3",
+    "pillow>=12.2.0",
+    "seaborn>=0.13.2",
+    "statsmodels>=0.14.6",
+]
