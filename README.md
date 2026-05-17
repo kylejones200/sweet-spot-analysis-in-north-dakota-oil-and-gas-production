@@ -69,3 +69,11 @@ uv run ruff check src tests
 ## Notebooks
 
 Legacy notebooks live under `notebooks/`. Prefer the `bakken_sweet_spot` package and CLI above.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
