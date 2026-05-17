@@ -1,0 +1,34 @@
+# Paths are relative to the repository root unless absolute.
+
+data:
+  # North Dakota Monthly Production Report (merged wells × months)
+  production_csv: data/north_dakota_production.csv
+  # Optional: legacy combined export used in exploratory heatmap notebook
+  combined_csv: data/combinedfile.csv
+  # Optional: Bakken 2018 Excel Well Workbook (IHS / state export)
+  workbook_xlsx: data/Bakken2018_Excel_Well_Workbook.xlsx
+
+output:
+  root: output
+  figures_dir: figures
+  tables_dir: tables
+  animations_dir: animations
+
+panel:
+  entity_col: API_WELLNO
+  time_col: ReportDate
+  dependent: Oil
+  regressor: Days
+  dk_bandwidth: 3
+  sample_wells: 5
+
+production:
+  well_name_col: WellName
+  oil_col: Oil
+  lat_col: Lat
+  long_col: Long
+
+sweet_spot:
+  source_file_col: Source_File
+  animation_duration_ms: 200
+  figure_dpi: 150
