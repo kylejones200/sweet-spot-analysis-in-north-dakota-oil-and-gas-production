@@ -4,6 +4,14 @@ Companion code for [`article.md`](article.md). Identifies high-performing Bakken
 
 Published: 2025-02-12 · [Medium article](https://medium.com/@kyle-t-jones/sweet-spot-analysis-in-north-dakota-oil-and-gas-production-5358580431e9)
 
+## Business context
+
+Sweet spot analysis is an approach in oil and gas exploration that identifies areas with sustained high production potential. By understanding where wells perform best over time, operators can optimize future drilling locations, improve recovery rates, and enhance economic returns. Production varies significantly based on geology, completion techniques, and operational decisions across basins.
+
+I wanted to find the most productive areas of North Dakota using cumulative production data since 2016.
+
+I compiled well-level production data from the North Dakota Monthly Production Report. This dataset includes oil output, well locations, and monthly production figures since 2016. I used cumulative prod as the measure of well performance. That isn't perfect but it is useful for highlighting areas that sustain output over time.
+
 ## Project layout
 
 ```
