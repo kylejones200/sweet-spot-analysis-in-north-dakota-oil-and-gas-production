@@ -140,11 +140,9 @@ def build_merged_workbook(workbook: pd.ExcelFile) -> pd.DataFrame:
     header = workbook.parse(0)
     formation = workbook.parse("Formation")
     completion = workbook.parse("Completion")
-
     merged = header.merge(formation, on="UWI", how="outer")
     header_cols = [c for c in HEADER_FORMATION_COLUMNS if c in merged.columns]
     merged = merged[header_cols]
     merged = merged.merge(completion, on="UWI", how="outer")
-
     available = [col for col in FULL_WORKBOOK_COLUMNS if col in merged.columns]
     return merged[available]

@@ -49,14 +49,11 @@ def run_production_exploration(config: dict[str, Any]) -> dict[str, Path]:
     oil_col = prod_cfg.get("oil_col", "Oil")
     lat_col = prod_cfg.get("lat_col", "Lat")
     long_col = prod_cfg.get("long_col", "Long")
-
     df = load_combined_csv(data_path(config, "combined_csv"))
     stats = summarize_wells(df, name_col=name_col, value_col=oil_col)
     enriched = merge_well_stats(df, stats, name_col=name_col)
-
     fig_root = figures_dir(config)
     table_root = tables_dir(config)
-
     paths: dict[str, Path] = {
         "lat_long_kde": plot_lat_long_kde(
             df, lat_col=lat_col, long_col=long_col, output_path=fig_root / "lat_long_kde.png"
@@ -65,7 +62,6 @@ def run_production_exploration(config: dict[str, Any]) -> dict[str, Path]:
             enriched, table_root / "bakken_production_scaled.csv"
         ),
     }
-
     if "ReportDate" in df.columns and "API_WELLNO_category" in df.columns:
         paths["category_panel"] = plot_production_by_category(
             df,

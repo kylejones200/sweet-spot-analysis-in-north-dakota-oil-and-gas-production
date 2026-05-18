@@ -66,11 +66,9 @@ def build_cumulative_heatmap_gif(
     from PIL import Image
 
     gpd, ctx = _require_geospatial()
-
     frames_dir.mkdir(parents=True, exist_ok=True)
     months = frame["Date"].sort_values().unique()
     image_files: list[Path] = []
-
     for month in months:
         month_df = frame[frame["Date"] == month]
         gdf = gpd.GeoDataFrame(
@@ -78,7 +76,6 @@ def build_cumulative_heatmap_gif(
             geometry=gpd.points_from_xy(month_df[long_col], month_df[lat_col]),
         )
         gdf = gdf.set_crs(epsg=4326).to_crs(epsg=3857)
-
         fig, ax = plt.subplots(figsize=(10, 6))
         ax.set_title(f"Cumulative oil production — {pd.Timestamp(month).strftime('%Y-%m')}")
         gdf.plot(
@@ -93,7 +90,6 @@ def build_cumulative_heatmap_gif(
         ax.set_xticks([])
         ax.set_yticks([])
         ax.axis("off")
-
         frame_path = frames_dir / f"production_{pd.Timestamp(month).strftime('%Y_%m')}.png"
         fig.savefig(frame_path, dpi=dpi, bbox_inches="tight")
         plt.close(fig)
@@ -117,7 +113,6 @@ def run_sweet_spot_pipeline(config: dict[str, Any]) -> dict[str, Path]:
     """Build cumulative production animation from configured production CSV."""
     sweet_cfg = section(config, "sweet_spot")
     prod_cfg = section(config, "production")
-
     path = data_path(config, "production_csv")
     raw = load_production_csv(path)
     frame = prepare_sweet_spot_frame(
@@ -128,7 +123,6 @@ def run_sweet_spot_pipeline(config: dict[str, Any]) -> dict[str, Path]:
         lat_col=prod_cfg.get("lat_col", "Lat"),
         long_col=prod_cfg.get("long_col", "Long"),
     )
-
     anim_root = animations_dir(config)
     return {
         "cumulative_gif": build_cumulative_heatmap_gif(

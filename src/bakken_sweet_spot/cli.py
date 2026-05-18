@@ -72,9 +72,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=str(DEFAULT_CONFIG_PATH),
         help="Path to config.yaml",
     )
-
     sub = parser.add_subparsers(dest="command", required=True)
-
     sub.add_parser(
         "panel",
         help="Panel OLS with Driscoll–Kraay SEs and sample-well plots",
@@ -91,7 +89,6 @@ def build_parser() -> argparse.ArgumentParser:
         "workbook",
         help="Merge Bakken Excel workbook sheets",
     ).set_defaults(func=cmd_workbook)
-
     return parser
 
 

@@ -25,7 +25,6 @@ def fit_panel_models(
     """Fit entity-fixed-effects models with default, DK, and clustered SEs."""
     x_matrix = sm.add_constant(panel[regressor])
     y = panel[dependent]
-
     model_default = PanelOLS(y, x_matrix, entity_effects=True).fit()
     model_dk = PanelOLS(y, x_matrix, entity_effects=True).fit(
         cov_type="kernel", kernel="bartlett", bandwidth=dk_bandwidth
@@ -45,7 +44,6 @@ def plot_standard_error_comparison(
     """Bar chart comparing SE estimates across covariance specifications."""
     param_labels = labels or ["Intercept", "Days"]
     default_se, dk_se, cluster_se = (m.std_errors.to_numpy() for m in models)
-
     x = range(len(param_labels))
     width = 0.25
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -91,7 +89,6 @@ def plot_sample_well_series(
         {"font.family": "serif", "axes.spines.top": False, "axes.spines.right": False}
     )
     wells = panel.index.get_level_values(entity_col).unique()[:n_wells]
-
     fig, ax = plt.subplots(figsize=(12, 6))
     for well in wells:
         well_data = panel.xs(well, level=entity_col)
@@ -117,7 +114,6 @@ def plot_sample_well_boxplot(
 ) -> Path:
     wells = panel.index.get_level_values(entity_col).unique()[:n_wells]
     series = [panel.xs(well, level=entity_col)[dependent].dropna() for well in wells]
-
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.boxplot(series, tick_labels=[str(w) for w in wells])
     ax.set_title("Monthly oil production distribution")
@@ -147,7 +143,6 @@ def build_production_animation(
     wells = panel.index.get_level_values(entity_col).unique()[:n_wells]
     dates = sorted(panel.index.get_level_values(time_col).unique())
     frames_dir.mkdir(parents=True, exist_ok=True)
-
     images: list[Image.Image] = []
     for i, date in enumerate(dates):
         fig, ax = plt.subplots(figsize=(12, 6))
@@ -163,9 +158,7 @@ def build_production_animation(
         images.append(Image.open(frame_path))
 
     gif_path.parent.mkdir(parents=True, exist_ok=True)
-    images[0].save(
-        gif_path, save_all=True, append_images=images[1:], duration=duration_ms, loop=0
-    )
+    images[0].save(gif_path, save_all=True, append_images=images[1:], duration=duration_ms, loop=0)
     return gif_path
 
 
@@ -178,7 +171,6 @@ def run_panel_pipeline(config: dict[str, Any]) -> dict[str, Path]:
     regressor = panel_cfg.get("regressor", "Days")
     dk_bandwidth = int(panel_cfg.get("dk_bandwidth", 3))
     n_wells = int(panel_cfg.get("sample_wells", 5))
-
     raw = load_production_from_config(config)
     panel = prepare_panel_frame(
         raw,
@@ -187,13 +179,9 @@ def run_panel_pipeline(config: dict[str, Any]) -> dict[str, Path]:
         dependent=dependent,
         regressor=regressor,
     )
-
-    models = fit_panel_models(
-        panel, dependent, regressor, dk_bandwidth=dk_bandwidth
-    )
+    models = fit_panel_models(panel, dependent, regressor, dk_bandwidth=dk_bandwidth)
     fig_root = figures_dir(config)
     anim_root = animations_dir(config)
-
     paths = {
         "standard_errors": plot_standard_error_comparison(
             models, output_path=fig_root / "panel_standard_errors.png"

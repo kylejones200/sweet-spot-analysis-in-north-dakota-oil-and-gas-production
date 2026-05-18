@@ -12,7 +12,6 @@ def test_summarize_and_scale():
     )
     stats = summarize_wells(df, name_col="WellName", value_col="Oil")
     enriched = merge_well_stats(df, stats, name_col="WellName")
-
     a_scaled = enriched.loc[enriched["WellName"] == "A", "local_scaled"].tolist()
     assert a_scaled == [10 / 30, 1.0]
     assert enriched.loc[enriched["WellName"] == "B", "local_scaled"].iloc[0] == 1.0
